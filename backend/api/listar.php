@@ -15,7 +15,7 @@ $num = $stmt->rowCount();
 
 if($num > 0) {
     $users_arr = array();
-    $users_arr["registros"] = array();
+    $users_arr["users"] = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -26,7 +26,7 @@ if($num > 0) {
             "email" => $descripcion
         );
 
-        array_push($users_arr["registros"], $entidad_item);
+        array_push($users_arr["users"], $users_item);
     }
 
     http_response_code(200);
@@ -35,6 +35,6 @@ if($num > 0) {
 } else {
     http_response_code(404);
 
-    echo json_encode(array("mensaje" => "No se encontraron registros."));
+    echo json_encode(array("mensaje" => "No se encontraron usuarios."));
 }
 ?>
