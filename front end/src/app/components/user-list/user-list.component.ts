@@ -13,6 +13,7 @@ import { User } from '../../models/user.model';
 })
 export class UserListComponent {
   users: User[] = [];
+  cryptoPrices: any; 
 
   constructor(private userService: UserService) {}
 
@@ -43,5 +44,15 @@ export class UserListComponent {
         }
       );
     }
+  }
+  mostrarCryptoPrices(): void {
+    this.userService.getCryptoPrices().subscribe(
+      (data) => {
+        this.cryptoPrices = data;
+      },
+      (error) => {
+        console.error('Error al obtener precios de criptomonedas:', error);
+      }
+    );
   }
 }

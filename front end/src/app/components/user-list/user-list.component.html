@@ -1,11 +1,14 @@
 <h2>Lista de Usuarios</h2>
+<button (click)="mostrarCryptoPrices()">Mostrar Precios de Criptomonedas</button>
 <a routerLink="/add-user">Agregar Usuario</a>
-<table>
+
+<table *ngIf="users && users.length > 0; else noUsers">
   <thead>
     <tr>
       <th>ID</th>
       <th>Nombre</th>
       <th>Email</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -20,3 +23,12 @@
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="cryptoPrices">
+  <h3>Precios de Criptomonedas</h3>
+  <pre>{{ cryptoPrices | json }}</pre>
+</div>
+
+<ng-template #noUsers>
+  <p>No hay usuarios para mostrar.</p>
+</ng-template>

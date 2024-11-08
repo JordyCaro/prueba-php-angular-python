@@ -33,4 +33,8 @@ export class UserService {
       body: { id: id }
     });
   }
+
+  getCryptoPrices(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}script-python.php`);
+  }
 }
