@@ -1,5 +1,8 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:4200");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../config/db.php';
@@ -23,7 +26,7 @@ if($num > 0) {
         $users_item = array(
             "id" => $id,
             "nombre" => $nombre,
-            "email" => $descripcion
+            "email" => $email
         );
 
         array_push($users_arr["users"], $users_item);
