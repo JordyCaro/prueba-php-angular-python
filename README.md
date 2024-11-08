@@ -71,13 +71,13 @@ Instalar Dependencias:
 ```bash
 cd frontend
 npm install
-Iniciar la Aplicación Angular:
 ```
+Iniciar la Aplicación Angular:
 
 ```bash
-ng serve --open
-Esto abrirá la aplicación en el navegador en http://localhost:4200.
+ng serve 
 ```
+Esto abrirá la aplicación en el navegador en http://localhost:4200.
 
 ### Paso 4: Configuración del Script en Python
 Configurar el Entorno Python:
@@ -86,7 +86,6 @@ Asegúrate de tener Python instalado.
 Instala las dependencias necesarias (si tuvieras alguna librería específica en el script).
 Ubicación del Script:
 
-El script de Python (crypto_prices.py) está ubicado en la carpeta backend/scripts/.
 Probar el Script en Python:
 
 Puedes ejecutar el script directamente para verificar que funciona:
@@ -103,32 +102,7 @@ Desde el frontend Angular, puedes agregar, editar, eliminar y listar usuarios. L
 Ejecución del Script de Criptomonedas:
 
 En la página de lista de usuarios, encontrarás un botón que dice "Mostrar Precios de Criptomonedas". Al hacer clic en este botón, el frontend hace una solicitud al backend PHP, el cual ejecuta el script Python y devuelve los datos de precios en tiempo real.
-Estructura del Proyecto
-```graphql
-nombre_del_repositorio/
-├── backend/
-│   ├── api/
-│   │   ├── listar.php
-│   │   ├── agregar.php
-│   │   ├── editar.php
-│   │   ├── eliminar.php
-│   │   └── ejecutar_script.php  # Endpoint para ejecutar el script Python
-│   ├── config/
-│   │   └── db.php              # Configuración de la base de datos
-│   ├── models/
-│   │   └── users.php           # Modelo de usuario para operaciones CRUD
-│   └── scripts/
-│       ├── crypto_prices.py    # Script Python que obtiene precios de criptomonedas
-│       └── crypto_prices_*.json # Archivos JSON generados por el script
-├── frontend/
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── components/
-│   │   │   └── services/
-│   ├── angular.json
-│   └── package.json
-└── README.md
-```
+
 Prueba del Funcionamiento
 Abrir la Aplicación Angular en http://localhost:4200.
 Gestión de Usuarios:
