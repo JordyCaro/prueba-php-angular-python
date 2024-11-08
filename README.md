@@ -40,8 +40,8 @@ Configurar Conexión a la Base de Datos:
 
 Edita el archivo config/db.php con tus credenciales de base de datos:
 
+```bash
 php
-Copiar código
 <?php
 class Database {
     private $host = "localhost";
@@ -61,24 +61,25 @@ class Database {
         return $this->conn;
     }
 }
+```
 Probar la API:
 
 Navega a http://localhost/backend/api/listar.php para verificar que el backend esté funcionando.
 Paso 3: Configuración del Frontend (Angular)
 Instalar Dependencias:
 
-bash
-Copiar código
+```bash
 cd frontend
 npm install
 Iniciar la Aplicación Angular:
+```
 
-bash
-Copiar código
+```bash
 ng serve --open
 Esto abrirá la aplicación en el navegador en http://localhost:4200.
+```
 
-Paso 4: Configuración del Script en Python
+### Paso 4: Configuración del Script en Python
 Configurar el Entorno Python:
 
 Asegúrate de tener Python instalado.
@@ -90,9 +91,9 @@ Probar el Script en Python:
 
 Puedes ejecutar el script directamente para verificar que funciona:
 
-bash
-Copiar código
-python3 backend/scripts/crypto_prices.py
+```bash
+python3 python-script.py
+```
 El script generará un archivo JSON con los precios de criptomonedas en la misma carpeta.
 
 Funcionalidades
@@ -103,8 +104,7 @@ Ejecución del Script de Criptomonedas:
 
 En la página de lista de usuarios, encontrarás un botón que dice "Mostrar Precios de Criptomonedas". Al hacer clic en este botón, el frontend hace una solicitud al backend PHP, el cual ejecuta el script Python y devuelve los datos de precios en tiempo real.
 Estructura del Proyecto
-graphql
-Copiar código
+```graphql
 nombre_del_repositorio/
 ├── backend/
 │   ├── api/
@@ -128,6 +128,7 @@ nombre_del_repositorio/
 │   ├── angular.json
 │   └── package.json
 └── README.md
+```
 Prueba del Funcionamiento
 Abrir la Aplicación Angular en http://localhost:4200.
 Gestión de Usuarios:
@@ -140,9 +141,6 @@ Si encuentras problemas de CORS, revisa que los encabezados CORS estén configur
 El script Python puede necesitar permisos de escritura en la carpeta scripts para generar archivos JSON.
 Créditos
 Este proyecto fue desarrollado para demostrar la integración de un frontend en Angular, un backend en PHP y un script en Python para procesar datos de una API externa.
-
-yaml
-Copiar código
 
 ---
 
