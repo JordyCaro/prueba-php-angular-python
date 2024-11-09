@@ -1,34 +1,68 @@
-<h2>Lista de Usuarios</h2>
-<button (click)="mostrarCryptoPrices()">Mostrar Precios de Criptomonedas</button>
-<a routerLink="/add-user">Agregar Usuario</a>
-
-<table *ngIf="users && users.length > 0; else noUsers">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.nombre }}</td>
-      <td>{{ user.email }}</td>
-      <td>
-        <a [routerLink]="['/edit-user', user.id]">Editar</a>
-        <button (click)="deleteUser(user.id)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="cryptoPrices">
-  <h3>Precios de Criptomonedas</h3>
-  <pre>{{ cryptoPrices | json }}</pre>
-</div>
-
-<ng-template #noUsers>
-  <p>No hay usuarios para mostrar.</p>
-</ng-template>
+ <div class="navbar">
+    <a class="navbar-brand" routerLink="/">Prueba FullStack</a>
+  </div>
+  
+  <header class="header">
+    <h1>CRUD Angular-PHP</h1>
+    <div class="description-card">
+      <p>Este CRUD hecho con PHP y Angular permite gestionar usuarios de manera eficiente. <br>
+         Aquí puedes agregar, editar y eliminar usuarios en la lista.</p>
+    </div>
+  </header>
+  
+  <table class="user-table" *ngIf="users && users.length > 0; else noUsers">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button class="edit-link" [routerLink]="['/edit-user', user.id]">Editar</button>
+          <button class="delete-btn" (click)="confirmDeleteUser(user.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="center-button">
+    <button class="add-user-btn" routerLink="/add-user">Agregar Usuario</button>
+    <!-- <button (click)="mostrarCryptoPrices()">Mostrar Precios de Criptomonedas</button> -->
+  </div>
+  
+  <div *ngIf="cryptoPrices">
+    <h3>Precios de Criptomonedas</h3>
+    <pre>{{ cryptoPrices | json }}</pre>
+  </div>
+  
+  <ng-template #noUsers>
+    <p>No hay usuarios para mostrar.</p>
+  </ng-template>
+  
+  <div class="modal" *ngIf="showConfirmModal">
+    <div class="modal-content">
+      <p>¿Estás seguro de eliminar este usuario?</p>
+      <div class="modal-actions">
+        <button (click)="deleteUser()" class="confirm-btn">Confirmar</button>
+        <button (click)="cancelDelete()" class="cancel-btn">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <p>Usuario eliminado exitosamente</p>
+    </div>
+  </div>
+  
+  <footer class="footer">
+    <i>Desarrollado por Jhordan Caro © 2024</i>
+  </footer>
+  

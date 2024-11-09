@@ -1,10 +1,42 @@
-<h2>Agregar Usuario</h2>
-<form (ngSubmit)="addUser()">
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" [(ngModel)]="user.nombre" name="nombre" required>
+<div class="navbar">
+  <a class="navbar-brand" routerLink="/">Prueba FullStack</a>
+  <a class="navbar-link" routerLink="/users">Inicio</a>
+</div>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+<div class="container">
+  <h2>Agregar Usuario</h2>
+  <p class="description">
+    Completa el formulario para agregar un nuevo usuario a la lista.
+  </p>
 
-  <button type="submit">Agregar</button>
-</form>
+  <div class="form-card">
+    <form [formGroup]="userForm" (ngSubmit)="addUser()">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" formControlName="nombre">
+      <div *ngIf="userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched" class="error-message">
+        El nombre es obligatorio.
+      </div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error-message">
+        El correo es obligatorio y debe ser válido.
+      </div>
+
+      <div class="button-group">
+        <button type="submit" [disabled]="userForm.invalid">Agregar</button>
+        <button type="button" routerLink="/users">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <p>Usuario agregado exitosamente</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <i>Desarrollado por Jhordan Caro © 2024</i>
+</footer>

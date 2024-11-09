@@ -1,10 +1,42 @@
-<h2>Editar Usuario</h2>
-<form (ngSubmit)="updateUser()">
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" [(ngModel)]="user.nombre" name="nombre" required>
+<div class="navbar">
+  <a class="navbar-brand" routerLink="/">Prueba FullStack</a>
+  <a class="navbar-link" routerLink="/users">Inicio</a>
+</div>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+<div class="container">
+  <h2>Editar Usuario</h2>
+  <p class="description">
+    Modifica la información del usuario y guarda los cambios o cancela para regresar a la lista de usuarios.
+  </p>
 
-  <button type="submit">Actualizar</button>
-</form>
+  <div class="form-card">
+    <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" formControlName="nombre">
+      <div *ngIf="userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched" class="error-message">
+        El nombre es obligatorio.
+      </div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error-message">
+        El correo es obligatorio y debe ser válido.
+      </div>
+
+      <div class="button-group">
+        <button type="submit" [disabled]="userForm.invalid">Actualizar</button>
+        <button type="button" (click)="cancelEdit()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <p>Usuario actualizado exitosamente</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <i>Desarrollado por Jhordan Caro © 2024</i>
+</footer>

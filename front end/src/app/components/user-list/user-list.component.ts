@@ -13,7 +13,10 @@ import { User } from '../../models/user.model';
 })
 export class UserListComponent {
   users: User[] = [];
-  cryptoPrices: any; 
+  cryptoPrices: any;
+  showModal: boolean = false; 
+  showConfirmModal: boolean = false; 
+  userIdToDelete: number | null = null; 
 
   constructor(private userService: UserService) {}
 
@@ -25,7 +28,6 @@ export class UserListComponent {
     this.userService.getUsers().subscribe(
       (data) => {
         this.users = data.users;
-        console.log(data)
       },
       (error) => {
         console.error('Error al obtener los usuarios:', error);
@@ -33,18 +35,39 @@ export class UserListComponent {
     );
   }
 
-  deleteUser(id: number): void {
-    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-      this.userService.deleteUser(id).subscribe(
+  confirmDeleteUser(id: number): void {
+    this.userIdToDelete = id; 
+    this.showConfirmModal = true; 
+  }
+
+  deleteUser(): void {
+    if (this.userIdToDelete !== null) {
+      this.userService.deleteUser(this.userIdToDelete).subscribe(
         () => {
           this.getUsers();
+          this.showSuccessModal();
+          this.userIdToDelete = null;
         },
         error => {
           console.error('Error al eliminar el usuario:', error);
         }
       );
+      this.showConfirmModal = false;
     }
   }
+
+  cancelDelete(): void {
+    this.userIdToDelete = null;
+    this.showConfirmModal = false;
+  }
+
+  showSuccessModal(): void {
+    this.showModal = true;
+    setTimeout(() => {
+      this.showModal = false;
+    }, 3000);
+  }
+
   mostrarCryptoPrices(): void {
     this.userService.getCryptoPrices().subscribe(
       (data) => {
