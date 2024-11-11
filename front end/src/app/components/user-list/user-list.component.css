@@ -155,6 +155,7 @@
     text-decoration: none;
     transition: background-color 0.3s;
     color: white;
+    margin-right: 13px;
   }
   
   .user-table .edit-link:hover {
