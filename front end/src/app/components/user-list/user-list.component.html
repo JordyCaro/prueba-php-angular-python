@@ -1,5 +1,6 @@
  <div class="navbar">
     <a class="navbar-brand" routerLink="/">Prueba FullStack</a>
+    <button class="crypto-btn" (click)="mostrarCryptoPrices()">Mostrar Precios de Criptomonedas</button>
   </div>
   
   <header class="header">
@@ -34,12 +35,21 @@
   
   <div class="center-button">
     <button class="add-user-btn" routerLink="/add-user">Agregar Usuario</button>
-    <button (click)="mostrarCryptoPrices()">Mostrar Precios de Criptomonedas</button>
   </div>
-  
-  <div *ngIf="cryptoPrices">
-    <h3>Precios de Criptomonedas</h3>
-    <pre>{{ cryptoPrices | json }}</pre>
+
+  <div class="modal" *ngIf="showCryptoModal">
+    <div class="modal-content">
+      <div *ngIf="cryptoPrices">
+        <h3>Precios de Criptomonedas</h3>
+        <div *ngIf="cryptoPrices.precios">
+          <br>
+          <p><strong>Bitcoin:</strong> {{ cryptoPrices.precios.Bitcoin }}</p>
+          <p><strong>Ethereum:</strong> {{ cryptoPrices.precios.Ethereum }}</p>
+          <br>
+        </div>
+      </div>      
+      <button class="close-btn" (click)="closeCryptoModal()">Cerrar</button>
+    </div>
   </div>
   
   <ng-template #noUsers>

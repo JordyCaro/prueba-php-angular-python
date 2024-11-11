@@ -14,7 +14,9 @@ import { User } from '../../models/user.model';
 export class UserListComponent {
   users: User[] = [];
   cryptoPrices: any;
+  cryptoPricesFormatted: { name: string; price: number }[] = [];
   showModal: boolean = false; 
+  showCryptoModal: boolean = false;
   showConfirmModal: boolean = false; 
   userIdToDelete: number | null = null; 
 
@@ -72,10 +74,18 @@ export class UserListComponent {
     this.userService.getCryptoPrices().subscribe(
       (data) => {
         this.cryptoPrices = data;
+        this.cryptoPricesFormatted = Object.keys(this.cryptoPrices).map((key) => {
+          return { name: key, price: this.cryptoPrices[key] };
+        });
+        this.showCryptoModal = true;
       },
       (error) => {
         console.error('Error al obtener precios de criptomonedas:', error);
       }
     );
+  }
+
+  closeCryptoModal(): void {
+    this.showCryptoModal = false;
   }
 }
